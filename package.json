@@ -1,9 +1,12 @@
 {
   "name": "gomoku-game",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Gomoku game engine",
-  "main": "index.js",
-  "types": "index.d.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest ./tests/",
     "build": "rm -r ./dist/* && tsc"
