@@ -43,6 +43,13 @@ class GomokuBoard {
     this.placedStones++;
   }
   getStone(col: number, row: number): Stone {
+    if (
+      col < 0 ||
+      row < 0 ||
+      col >= this.board[0].length ||
+      row >= this.board.length
+    )
+      return 0;
     return this.board[row][col];
   }
   getWinningCombination(): Array<[number, number]> {
@@ -113,9 +120,6 @@ class GomokuBoard {
 
     for (const [fromToDistancePair, directionVector] of directions) {
       const [from, to] = fromToDistancePair;
-      if (this.isExact) {
-      }
-
       if (
         from + to == this.combinationLength - 1 ||
         (from + to >= this.combinationLength - 1 && !this.isExact)
@@ -132,10 +136,6 @@ class GomokuBoard {
     }
     return false;
   }
-
-  print() {
-    console.log("");
-  }
 }
 
 function genWinningCombination(
@@ -146,14 +146,13 @@ function genWinningCombination(
   toDistance: number
 ): [number, number][] {
   const result: [number, number][] = [];
-  const currentPosition: [number, number] = [
-    col + fromDistance * vectorFromTo[0],
-    row + toDistance * vectorFromTo[1],
-  ];
-  for (let i = 0; i < fromDistance + toDistance; i++) {
-    result.push(currentPosition);
-    currentPosition[0] += vectorFromTo[0];
-    currentPosition[1] += vectorFromTo[1];
+  let currCol = col + vectorFromTo[0] * fromDistance * -1;
+  let currRow = row + vectorFromTo[0] * fromDistance * -1;
+
+  for (let i = fromDistance; i < toDistance + 1; i++) {
+    result.push([currCol, currRow]);
+    currCol += vectorFromTo[0];
+    currRow += vectorFromTo[1];
   }
   return result;
 }
