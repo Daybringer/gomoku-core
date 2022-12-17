@@ -38,6 +38,10 @@ class GomokuBoard {
     return board;
   }
 
+  getBoard(): Array<Row> {
+    return [...this.board];
+  }
+
   setStone(col: number, row: number, stone: Stone): void {
     this.board[row][col] = stone;
     this.placedStones++;
