@@ -86,3 +86,60 @@ test("Win Positions check", () => {
 
   expect(board.getWinningCombination()).toEqual(positions);
 });
+
+test("Win Positions check incorrect", () => {
+  const board = new GomokuBoard(15, 15, 5, true);
+  for (let i = 0; i < 5; i++) {
+    board.setStone(i, 0, CIRCLE);
+  }
+
+  board.hasWon(CIRCLE, 0, 0);
+
+  const positions = [
+    [0, 0],
+    [1, 2],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+  ];
+
+  expect(board.getWinningCombination()).not.toEqual(positions);
+});
+
+test("Win Positions check vertical", () => {
+  const board = new GomokuBoard(15, 15, 5, true);
+  for (let i = 0; i < 5; i++) {
+    board.setStone(0, i, CROSS);
+  }
+
+  board.hasWon(CROSS, 0, 0);
+
+  const positions = [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [0, 3],
+    [0, 4],
+  ];
+
+  expect(board.getWinningCombination()).toEqual(positions);
+});
+
+test("Win Positions check vertical moved", () => {
+  const board = new GomokuBoard(15, 15, 5, true);
+  for (let i = 0; i < 5; i++) {
+    board.setStone(1, i, CROSS);
+  }
+
+  expect(board.hasWon(CROSS, 1, 2)).toBeTruthy();
+
+  const positions = [
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [1, 3],
+    [1, 4],
+  ];
+
+  expect(board.getWinningCombination()).toEqual(positions);
+});

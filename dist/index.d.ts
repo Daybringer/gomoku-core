@@ -2,6 +2,7 @@ type Empty = 0;
 type Circle = 1;
 type Cross = 2;
 type Stone = Empty | Circle | Cross;
+type Row = Stone[];
 declare class GomokuBoard {
     private board;
     private isExact;
@@ -11,6 +12,7 @@ declare class GomokuBoard {
     private maxStones;
     constructor(cols: number, rows: number, winningCombinationLength: number, exactCombinationLength: boolean);
     private generateBoard;
+    getBoard(): Array<Row>;
     setStone(col: number, row: number, stone: Stone): void;
     getStone(col: number, row: number): Stone;
     getWinningCombination(): Array<[number, number]>;

@@ -1,6 +1,6 @@
 {
   "name": "gomoku-game",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Gomoku game engine",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

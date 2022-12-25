@@ -151,13 +151,23 @@ function genWinningCombination(
 ): [number, number][] {
   const result: [number, number][] = [];
   let currCol = col + vectorFromTo[0] * fromDistance * -1;
-  let currRow = row + vectorFromTo[0] * fromDistance * -1;
+  let currRow = row + vectorFromTo[1] * fromDistance * -1;
+  console.error({
+    currCol,
+    currRow,
+    col,
+    row,
+    vectorFromTo,
+    fromDistance,
+    toDistance,
+  });
 
-  for (let i = fromDistance; i < toDistance + 1; i++) {
+  for (let i = -fromDistance; i < toDistance + 1; i++) {
     result.push([currCol, currRow]);
     currCol += vectorFromTo[0];
     currRow += vectorFromTo[1];
   }
+  console.log("result", result);
   return result;
 }
 
